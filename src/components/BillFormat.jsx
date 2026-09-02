@@ -2,6 +2,7 @@ import React from 'react';
 import { QRCodeSVG } from 'qrcode.react';
 import { numberToWordsIndian } from '../utils/numberToWords';
 import logoImg from '../assets/logo.png';
+import scannerImg from '../assets/scanner.png';
 
 export default function BillFormat({ bill, company, id = "printable-bill-document" }) {
   if (!bill || !company) return null;
@@ -263,14 +264,13 @@ export default function BillFormat({ bill, company, id = "printable-bill-documen
               <div className="font-bold">RTGS/NEFT/IFSC : {company.bankDetails?.ifsc}</div>
             </div>
 
-            {/* Center UPI QR Code */}
-            <div className="col-span-2 p-1.5 border-r border-black flex flex-col items-center justify-center">
-              <div className="p-1 bg-white flex items-center justify-center">
-                <QRCodeSVG 
-                  value={qrValue} 
-                  size={60} 
-                  level="M"
-                  includeMargin={false}
+            {/* Center UPI QR Code Scanner */}
+            <div className="col-span-2 p-1 border-r border-black flex flex-col items-center justify-center">
+              <div className="p-0.5 bg-white flex items-center justify-center">
+                <img 
+                  src={company.qrUrl || scannerImg} 
+                  alt="Payment QR Scanner" 
+                  className="w-[66px] h-[66px] object-contain"
                 />
               </div>
             </div>
