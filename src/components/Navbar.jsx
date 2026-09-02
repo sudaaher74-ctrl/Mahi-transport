@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { LayoutDashboard, FileText, Truck, History, Users, Settings, Building2, Download, ChevronDown, CheckCircle2, Loader2 } from 'lucide-react';
+import logoImg from '../assets/logo.png';
 
 export default function Navbar({
   activeTab,
@@ -33,18 +34,22 @@ export default function Navbar({
     <header className="sticky top-0 z-40 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 shadow-md no-print">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Brand Logo & Name */}
+          {/* Brand Logo & Name: MAHI TRANSPORT */}
           <div className="flex items-center space-x-3 cursor-pointer" onClick={() => onSelectTab('dashboard')}>
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-blue-500/20">
-              TP
+            <div className="w-11 h-11 rounded-xl bg-white p-1 flex items-center justify-center shadow-lg shadow-blue-500/10 border border-slate-200">
+              <img 
+                src={logoImg} 
+                alt="Mahi Transport Logo" 
+                className="w-full h-full object-contain"
+              />
             </div>
             <div>
-              <span className="font-extrabold text-base tracking-tight text-white flex items-center space-x-1.5">
-                <span>Transport</span>
-                <span className="text-blue-500">Suite</span>
+              <span className="font-black text-base tracking-wider text-white flex items-center space-x-1.5">
+                <span className="text-red-500">MAHI</span>
+                <span className="text-white">TRANSPORT</span>
               </span>
               <span className="text-[10px] text-slate-400 block -mt-0.5 font-medium tracking-wide">
-                Invoice & E-LR Software
+                Billing & E-LR Software
               </span>
             </div>
           </div>

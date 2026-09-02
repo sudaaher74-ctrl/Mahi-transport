@@ -31,15 +31,15 @@ export default function Dashboard({
       {/* Welcome Banner */}
       <div className="relative overflow-hidden bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 border border-slate-700/80 rounded-3xl p-6 md:p-8 shadow-2xl">
         <div className="relative z-10 max-w-2xl space-y-2">
-          <div className="inline-flex items-center space-x-2 px-3 py-1 bg-blue-500/20 border border-blue-400/30 rounded-full text-blue-300 text-xs font-semibold">
+          <div className="inline-flex items-center space-x-2 px-3 py-1 bg-red-500/20 border border-red-400/30 rounded-full text-red-300 text-xs font-bold uppercase tracking-wider">
             <Building2 className="w-3.5 h-3.5" />
-            <span>Transport Billing & E-LR Management Suite</span>
+            <span>MAHI TRANSPORT Official Software</span>
           </div>
           <h1 className="text-2xl md:text-3xl font-black text-white tracking-tight">
             Fast, Authentic Bill & E-LR Generator
           </h1>
           <p className="text-slate-300 text-xs md:text-sm leading-relaxed">
-            Generate 100% compliant physical format Invoices and E-LR (Lorry Receipts / Bilty) with live UPI QR code, automatic words calculation, party auto-complete, and pixel-perfect A4 printing.
+            Generate 100% compliant physical format Invoices and E-LR (Lorry Receipts / Bilty) with live UPI QR code, automatic words calculation, party auto-complete, and pixel-perfect 1-page PDF export.
           </p>
 
           <div className="pt-3 flex flex-wrap gap-3">
