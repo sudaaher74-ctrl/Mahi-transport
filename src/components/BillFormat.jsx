@@ -24,22 +24,24 @@ export default function BillFormat({ bill, company, id = "printable-bill-documen
       style={{
         width: '100%',
         maxWidth: '210mm',
+        minHeight: '297mm',
         margin: '0 auto',
-        padding: '8mm 8mm',
+        padding: '6mm 6mm',
         boxSizing: 'border-box',
         backgroundColor: '#ffffff'
       }}
     >
-      {/* Outer Border Box matching physical reference */}
+      {/* Outer Border Box filling the full A4 height without empty trailing bottom space */}
       <div 
         className="border border-black flex flex-col justify-between"
         style={{
           width: '100%',
+          minHeight: '283mm',
           boxSizing: 'border-box'
         }}
       >
-        {/* TOP SECTION: Header, Title, Parties, Table */}
-        <div className="flex flex-col">
+        {/* TOP & MIDDLE SECTION: Header, Title, Parties, Table */}
+        <div className="flex-1 flex flex-col">
           
           {/* 1. Header (Logo, Company Name, Address, Contact) */}
           <div className="pt-2.5 pb-2 px-3 flex items-center justify-between">
@@ -61,7 +63,7 @@ export default function BillFormat({ bill, company, id = "printable-bill-documen
             {/* Centered Company Title & Address */}
             <div className="flex-1 text-center px-1">
               <h1 
-                className="text-[26px] leading-none font-black uppercase tracking-wider mb-1"
+                className="text-[27px] leading-none font-black uppercase tracking-wider mb-1"
                 style={{
                   fontFamily: '"Times New Roman", Times, Georgia, serif',
                   color: '#ff0000',
@@ -94,7 +96,7 @@ export default function BillFormat({ bill, company, id = "printable-bill-documen
 
           {/* 2. INVOICE Title Banner */}
           <div 
-            className="border-t border-b border-black py-1 text-center"
+            className="border-t border-b border-black py-1.5 text-center"
             style={{ backgroundColor: '#fde7da' }}
           >
             <span 
@@ -108,14 +110,14 @@ export default function BillFormat({ bill, company, id = "printable-bill-documen
           {/* 3. M/S Party & Bill No / Date Grid */}
           <div className="grid grid-cols-12 border-b border-black text-[11.5px]">
             {/* Left Party Box */}
-            <div className="col-span-8 p-1.5 px-2.5 border-r border-black flex flex-col justify-between min-h-[48px]">
+            <div className="col-span-8 p-2 px-2.5 border-r border-black flex flex-col justify-between min-h-[50px]">
               <div className="flex items-baseline">
                 <span className="font-bold whitespace-nowrap mr-1">M/S :</span>
                 <span className="font-bold text-[12px] uppercase">
                   {bill.clientName || 'SACHIN GAYAKHE'}
                 </span>
               </div>
-              <div className="flex items-baseline mt-1">
+              <div className="flex items-baseline mt-1.5">
                 <span className="font-bold whitespace-nowrap mr-1">A/C :</span>
                 <span className="font-normal">{bill.accountNo || ''}</span>
               </div>
@@ -123,11 +125,11 @@ export default function BillFormat({ bill, company, id = "printable-bill-documen
 
             {/* Right Bill No & Date Box */}
             <div className="col-span-4 flex flex-col">
-              <div className="py-1 px-2.5 border-b border-black flex items-center">
+              <div className="py-1.5 px-2.5 border-b border-black flex items-center">
                 <span className="font-bold text-[11px] mr-2">BILL NO :</span>
                 <span className="font-bold text-[11.5px]">{bill.billNo}</span>
               </div>
-              <div className="py-1 px-2.5 flex items-center">
+              <div className="py-1.5 px-2.5 flex items-center">
                 <span className="font-bold text-[11px] mr-2">DATE :</span>
                 <span className="font-bold text-[11.5px]">
                   {bill.date ? (bill.date.includes('-') ? bill.date.split('-').reverse().join('/') : bill.date) : ''}
@@ -136,8 +138,8 @@ export default function BillFormat({ bill, company, id = "printable-bill-documen
             </div>
           </div>
 
-          {/* 4. Main Particulars Table with Continuous Vertical Borders */}
-          <div className="flex flex-col relative">
+          {/* 4. Main Particulars Table with Continuous Vertical Lines running full length to bottom */}
+          <div className="flex-1 flex flex-col relative">
             {/* Table Header */}
             <div className="flex border-b border-black text-center font-bold text-[11px] bg-white">
               <div className="w-[12%] border-r border-black py-1 px-1 flex items-center justify-center">Date</div>
@@ -149,8 +151,8 @@ export default function BillFormat({ bill, company, id = "printable-bill-documen
               <div className="w-[11%] border-r-0 py-1 px-1 flex items-center justify-center">Amount</div>
             </div>
 
-            {/* Table Body with clean proportioned vertical height */}
-            <div className="flex relative text-[11px] min-h-[300px]">
+            {/* Table Body - flex-1 stretches to connect seamlessly to bottom with zero empty space */}
+            <div className="flex-1 flex relative text-[11px] min-h-[440px]">
               {/* Column 1: Date */}
               <div className="w-[12%] border-r border-black py-3 px-1 text-center flex flex-col space-y-4 font-normal">
                 {bill.items.map((item, idx) => (

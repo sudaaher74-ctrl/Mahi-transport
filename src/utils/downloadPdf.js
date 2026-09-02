@@ -8,7 +8,7 @@ export async function directDownloadPdf(elementId, filename = 'document.pdf') {
   }
 
   const opt = {
-    margin: [4, 4, 4, 4],
+    margin: [0, 0, 0, 0],
     filename: filename.endsWith('.pdf') ? filename : `${filename}.pdf`,
     image: { type: 'jpeg', quality: 0.98 },
     html2canvas: {
