@@ -1,4 +1,5 @@
-import html2pdf from 'html2pdf.js';
+import html2canvas from 'html2canvas';
+import { jsPDF } from 'jspdf';
 
 export async function directDownloadPdf(elementId, filename = 'document.pdf') {
   const element = document.getElementById(elementId);
@@ -7,30 +8,36 @@ export async function directDownloadPdf(elementId, filename = 'document.pdf') {
     return;
   }
 
-  const opt = {
-    margin: [0, 0, 0, 0],
-    filename: filename.endsWith('.pdf') ? filename : `${filename}.pdf`,
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: {
+  try {
+    // High-resolution canvas capture
+    const canvas = await html2canvas(element, {
       scale: 3,
       useCORS: true,
-      letterRendering: true,
       logging: false,
-      windowWidth: 1024
-    },
-    jsPDF: {
+      backgroundColor: '#ffffff'
+    });
+
+    const imgData = canvas.toDataURL('image/jpeg', 0.98);
+
+    // Create single-page A4 document
+    const pdf = new jsPDF({
+      orientation: 'portrait',
       unit: 'mm',
       format: 'a4',
-      orientation: 'portrait'
-    },
-    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-  };
+      compress: true
+    });
 
-  try {
-    await html2pdf().set(opt).from(element).save();
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+
+    // Draw the image filling the single A4 page
+    pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight, undefined, 'FAST');
+
+    const finalFilename = filename.endsWith('.pdf') ? filename : `${filename}.pdf`;
+    pdf.save(finalFilename);
   } catch (error) {
     console.error('PDF generation error:', error);
-    // Fallback to window.print if html2pdf encounters an issue
+    // Fallback to window print
     window.print();
   }
 }
