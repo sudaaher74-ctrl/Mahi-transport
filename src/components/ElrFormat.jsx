@@ -11,14 +11,15 @@ export default function ElrFormat({ elr, company, id = "printable-elr-document" 
         width: '100%', 
         maxWidth: '210mm', 
         margin: '0 auto', 
-        padding: '10mm 8mm',
+        padding: '8mm 6mm',
         boxSizing: 'border-box',
-        backgroundColor: '#ffffff'
+        backgroundColor: '#ffffff',
+        letterSpacing: 'normal'
       }}
     >
       {/* Outer Border Box */}
       <div 
-        className="border border-black p-2.5 flex flex-col justify-between" 
+        className="border border-black p-2 flex flex-col justify-between" 
         style={{ 
           boxSizing: 'border-box'
         }}
@@ -32,7 +33,7 @@ export default function ElrFormat({ elr, company, id = "printable-elr-document" 
               <div className="relative w-16 h-12 flex items-center justify-center">
                 {/* Red Oval Ring */}
                 <div className="absolute inset-0 rounded-full border-[3px] border-red-600 bg-black flex items-center justify-center shadow-sm">
-                  <div className="flex items-center font-black tracking-tighter">
+                  <div className="flex items-center font-black">
                     <span className="text-red-500 text-2xl font-extrabold italic" style={{ fontFamily: 'sans-serif' }}>S</span>
                     <span className="text-white text-xl font-extrabold" style={{ fontFamily: 'sans-serif' }}>KT</span>
                   </div>
@@ -41,20 +42,17 @@ export default function ElrFormat({ elr, company, id = "printable-elr-document" 
             </div>
 
             {/* Header Center */}
-            <div className="flex-1 text-center px-1">
+            <div className="flex-1 text-center px-2">
               <h1 
-                className="text-[26px] font-black uppercase tracking-wider leading-tight" 
+                className="text-[24px] font-extrabold uppercase text-red-600 leading-tight" 
                 style={{ 
-                  fontFamily: '"Times New Roman", Times, Georgia, serif',
-                  color: '#ff0000',
-                  textShadow: '1px 1px 0 #000, -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000',
-                  letterSpacing: '0.03em'
+                  fontFamily: '"Times New Roman", Times, Georgia, serif'
                 }}
               >
                 {company.name || 'SHREE SADGURU KRUPA TRANSPORT'}
               </h1>
               <div 
-                className="text-[12px] font-black tracking-wider text-blue-700 mt-0.5 uppercase"
+                className="text-[12px] font-bold text-blue-700 mt-0.5 uppercase"
                 style={{ fontFamily: '"Times New Roman", Times, serif' }}
               >
                 {company.subtitle || 'FLEET OWNERS & TRANSPORT CONTRACTORS'}
@@ -63,7 +61,10 @@ export default function ElrFormat({ elr, company, id = "printable-elr-document" 
                 {company.address}
               </div>
               <div className="text-[10px] font-normal text-black mt-0.5">
-                {company.mobile} Email_id : {company.email}
+                <span>{company.mobile}</span>
+                {company.email && (
+                  <span className="ml-2">Email id : {company.email}</span>
+                )}
               </div>
             </div>
 
@@ -74,16 +75,16 @@ export default function ElrFormat({ elr, company, id = "printable-elr-document" 
           {/* PAN NO and Transport ID and AT OWNER'S RISK banner */}
           <div className="grid grid-cols-12 items-center py-1 text-[11px]">
             <div className="col-span-4 font-bold">
-              PAN NO :- <span className="font-bold uppercase">{company.pan || 'AUKPB3418R'}</span>
+              PAN NO :- <span className="font-bold uppercase ml-1">{company.pan || 'AUKPB3418R'}</span>
             </div>
             <div 
-              className="col-span-4 text-center font-black text-blue-700 text-[13px] tracking-wider uppercase"
+              className="col-span-4 text-center font-extrabold text-blue-700 text-[13px] uppercase"
               style={{ fontFamily: '"Times New Roman", Times, serif' }}
             >
               AT OWNER'S RISK
             </div>
             <div className="col-span-4 text-right font-bold">
-              TRANSPORT ID :- <span className="font-bold uppercase">{company.transportId || '27AUKPB3418R1Z8'}</span>
+              TRANSPORT ID :- <span className="font-bold uppercase ml-1">{company.transportId || '27AUKPB3418R1Z8'}</span>
             </div>
           </div>
 
@@ -126,11 +127,11 @@ export default function ElrFormat({ elr, company, id = "printable-elr-document" 
             {/* Middle 4 Cols: Insurance Box */}
             <div className="col-span-4 border-r border-black p-1.5 flex flex-col justify-between text-[10.5px]">
               <div className="border border-black p-1.5 h-full flex flex-col justify-between text-[10px]">
-                <div className="text-center font-bold tracking-widest underline uppercase mb-0.5">
+                <div className="text-center font-bold underline uppercase mb-0.5">
                   I N S U R A N C E
                 </div>
                 <div className="text-[9.5px] leading-tight space-y-0.5">
-                  <p>The Customer has started that</p>
+                  <p>The Customer has stated that</p>
                   <div className="flex items-start space-x-1">
                     <span className="font-bold">*</span>
                     <span>he has not insured the consignment</span>
@@ -191,7 +192,7 @@ export default function ElrFormat({ elr, company, id = "printable-elr-document" 
                 </div>
                 <div className="grid grid-cols-12 border-b border-black p-0.5 px-1">
                   <span className="col-span-4 font-bold">Lorry No.</span>
-                  <span className="col-span-8 font-black text-right uppercase tracking-wider">{elr.lorryNo}</span>
+                  <span className="col-span-8 font-black text-right uppercase">{elr.lorryNo}</span>
                 </div>
                 <div className="grid grid-cols-12 border-b border-black p-0.5 px-1">
                   <span className="col-span-3 font-bold">From</span>
@@ -212,10 +213,10 @@ export default function ElrFormat({ elr, company, id = "printable-elr-document" 
               <div className="flex items-start">
                 <span className="font-bold w-24 text-[11.5px]">Consignor</span>
                 <div className="flex-1">
-                  <div className="font-black text-[12px] uppercase tracking-wide underline">
+                  <div className="font-black text-[12px] uppercase underline">
                     {elr.consignor?.name || 'TRIOMPHE DIGITAL TECHNOLOGY INDIA PVT.LTD'}
                   </div>
-                  <div className="text-[10px] underline text-black mt-0.5 leading-tight whitespace-pre-line font-medium">
+                  <div className="text-[10px] text-black mt-0.5 leading-tight whitespace-pre-line font-medium">
                     {elr.consignor?.address || '8, UNIT NO 803 PLOT NO 1, SECTOR 1, RUPA SOLITAIRE MILLENNIUM BUISNESS PARK ROAD,\nMAHAPE, NAVI MUMBAI, THANE, 400710'}
                   </div>
                 </div>
@@ -227,10 +228,10 @@ export default function ElrFormat({ elr, company, id = "printable-elr-document" 
               <div className="flex items-start">
                 <span className="font-bold w-24 text-[11.5px]">Consignee</span>
                 <div className="flex-1">
-                  <div className="font-black text-[12px] uppercase tracking-wide underline">
+                  <div className="font-black text-[12px] uppercase underline">
                     {elr.consignee?.name || 'AMEZON ISK3 ROYAL WEREHOUSING AND LOGI.LLP'}
                   </div>
-                  <div className="text-[10px] underline text-black mt-0.5 leading-tight whitespace-pre-line font-medium">
+                  <div className="text-[10px] text-black mt-0.5 leading-tight whitespace-pre-line font-medium">
                     {elr.consignee?.address || 'Survey Number 45\nHissa No.4A, Village Pise Village, Aamne Post\nBHIWANDI, MAHARASHTRA 421302'}
                   </div>
                 </div>
@@ -379,20 +380,20 @@ export default function ElrFormat({ elr, company, id = "printable-elr-document" 
 
           {/* Legal Notice Bottom */}
           <div className="flex items-end justify-between mt-2">
-            <div className="font-bold text-[10.5px] uppercase tracking-wide">
+            <div className="font-bold text-[10.5px] uppercase">
               {elr.termsNotice || 'NOT RESPONSIBLE FOR LEAKAGE & BREAKAGES IN TRANSIT'}
             </div>
 
             {/* Signature Area Right */}
             <div className="text-right">
               <div 
-                className="font-bold text-red-600 text-[12px] tracking-wide mb-5"
+                className="font-bold text-red-600 text-[12px] mb-4"
                 style={{ fontFamily: '"Times New Roman", Times, serif' }}
               >
                 {company.name || 'Shree Sadguru Krupa Transport'}
               </div>
               <div 
-                className="text-blue-800 font-bold text-[11px] tracking-wider"
+                className="text-blue-800 font-bold text-[11px]"
                 style={{ fontFamily: '"Times New Roman", Times, serif' }}
               >
                 Signature

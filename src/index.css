@@ -89,11 +89,17 @@
   }
 }
 
-/* Typography styles matching the physical transport invoices */
-.brand-title-red {
-  color: #e50914;
-  text-shadow: 1px 1px 1px #000000;
-  font-family: 'Cinzel', 'Times New Roman', serif;
+/* Document & Printable Typography resets to prevent any character overlapping */
+.print-page-wrapper {
+  letter-spacing: normal !important;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.print-page-wrapper * {
+  letter-spacing: normal;
+  box-sizing: border-box;
 }
 
 .document-table {

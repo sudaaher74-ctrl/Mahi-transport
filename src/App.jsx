@@ -243,6 +243,7 @@ export default function App() {
         const targetBill = specificData || currentBill;
         if (targetBill && activeTab !== 'bill') {
           setCurrentBill(targetBill);
+          await new Promise(r => setTimeout(r, 60));
         }
         const cleanNo = (targetBill?.billNo || '001').replace(/[^a-zA-Z0-9_-]/g, '_');
         await directDownloadPdf('printable-bill-document', `Bill_${cleanNo}.pdf`);
@@ -250,6 +251,7 @@ export default function App() {
         const targetElr = specificData || currentElr;
         if (targetElr && activeTab !== 'elr') {
           setCurrentElr(targetElr);
+          await new Promise(r => setTimeout(r, 60));
         }
         const cleanNo = (targetElr?.lrNo || '001').replace(/[^a-zA-Z0-9_-]/g, '_');
         await directDownloadPdf('printable-elr-document', `ELR_${cleanNo}.pdf`);
