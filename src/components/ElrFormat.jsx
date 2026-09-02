@@ -10,25 +10,23 @@ export default function ElrFormat({ elr, company, id = "printable-elr-document" 
       style={{ 
         width: '100%', 
         maxWidth: '210mm', 
-        minHeight: '297mm', 
         margin: '0 auto', 
-        padding: '8mm 6mm',
+        padding: '10mm 8mm',
         boxSizing: 'border-box',
         backgroundColor: '#ffffff'
       }}
     >
       {/* Outer Border Box */}
       <div 
-        className="border border-black p-2 flex flex-col justify-between" 
+        className="border border-black p-2.5 flex flex-col justify-between" 
         style={{ 
-          minHeight: '276mm',
           boxSizing: 'border-box'
         }}
       >
         
         <div>
           {/* Header Section */}
-          <div className="flex items-start justify-between pb-1">
+          <div className="flex items-start justify-between pb-1.5">
             {/* Logo Left */}
             <div className="w-[100px] flex flex-col items-center justify-center pt-1">
               <div className="relative w-16 h-12 flex items-center justify-center">
@@ -92,7 +90,7 @@ export default function ElrFormat({ elr, company, id = "printable-elr-document" 
           {/* 3-Column Top Section: Caution/Consignment Note | Insurance | Red Notice & Lorry Info */}
           <div className="grid grid-cols-12 border-t border-b border-black text-[10.5px]">
             {/* Left 4 Cols: Caution + Consignment Note */}
-            <div className="col-span-4 border-r border-black flex flex-col justify-between p-1 space-y-1.5">
+            <div className="col-span-4 border-r border-black flex flex-col justify-between p-1.5 space-y-1.5">
               {/* Caution Box */}
               <div className="border border-black p-1 text-[9px] text-center leading-tight">
                 <div className="font-bold uppercase text-[9.5px] mb-0.5">CAUTION</div>
@@ -126,8 +124,8 @@ export default function ElrFormat({ elr, company, id = "printable-elr-document" 
             </div>
 
             {/* Middle 4 Cols: Insurance Box */}
-            <div className="col-span-4 border-r border-black p-1 flex flex-col justify-between text-[10.5px]">
-              <div className="border border-black p-1 h-full flex flex-col justify-between text-[10px]">
+            <div className="col-span-4 border-r border-black p-1.5 flex flex-col justify-between text-[10.5px]">
+              <div className="border border-black p-1.5 h-full flex flex-col justify-between text-[10px]">
                 <div className="text-center font-bold tracking-widest underline uppercase mb-0.5">
                   I N S U R A N C E
                 </div>
@@ -168,7 +166,7 @@ export default function ElrFormat({ elr, company, id = "printable-elr-document" 
             </div>
 
             {/* Right 4 Cols: Red Notice Box + Lorry/Route Details */}
-            <div className="col-span-4 p-1 flex flex-col justify-between">
+            <div className="col-span-4 p-1.5 flex flex-col justify-between">
               {/* Red Notice Box */}
               <div className="border border-red-600 p-1 text-[8.5px] leading-tight text-red-600 font-semibold mb-1">
                 <div className="text-center font-bold uppercase underline mb-0.5 text-[9px]">NOTICE</div>
@@ -184,7 +182,7 @@ export default function ElrFormat({ elr, company, id = "printable-elr-document" 
                   <span className="col-span-5 font-bold text-[9.5px] text-right">{elr.consignor?.gstNo || ''}</span>
                 </div>
                 <div className="grid grid-cols-12 border-b border-black p-0.5 px-1">
-                  <span className="col-span-7 font-bold text-[9.5px]">Consignor Gst No.</span>
+                  <span className="col-span-7 font-bold text-[9.5px]">Consignee Gst No.</span>
                   <span className="col-span-5 font-bold text-[9.5px] text-right">{elr.consignee?.gstNo || ''}</span>
                 </div>
                 <div className="grid grid-cols-12 border-b border-black p-0.5 px-1">
@@ -210,7 +208,7 @@ export default function ElrFormat({ elr, company, id = "printable-elr-document" 
           {/* Consignor and Consignee Full Width Rows */}
           <div className="border-b border-black text-[11px]">
             {/* Consignor Row */}
-            <div className="p-1 px-2 border-b border-black">
+            <div className="py-1 px-2 border-b border-black">
               <div className="flex items-start">
                 <span className="font-bold w-24 text-[11.5px]">Consignor</span>
                 <div className="flex-1">
@@ -225,7 +223,7 @@ export default function ElrFormat({ elr, company, id = "printable-elr-document" 
             </div>
 
             {/* Consignee Row */}
-            <div className="p-1 px-2">
+            <div className="py-1 px-2">
               <div className="flex items-start">
                 <span className="font-bold w-24 text-[11.5px]">Consignee</span>
                 <div className="flex-1">
@@ -240,7 +238,7 @@ export default function ElrFormat({ elr, company, id = "printable-elr-document" 
             </div>
           </div>
 
-          {/* Articles and Charges Split Table */}
+          {/* Articles and Charges Split Table with balanced height */}
           <div className="grid grid-cols-12 border-b border-black text-[10.5px]">
             {/* Left 8 Cols: Goods Description and Weights */}
             <div className="col-span-8 border-r border-black flex flex-col justify-between">
@@ -258,7 +256,7 @@ export default function ElrFormat({ elr, company, id = "printable-elr-document" 
               </div>
 
               {/* Continuous vertical columns */}
-              <div className="grid grid-cols-12 min-h-[90px] text-[10.5px]">
+              <div className="grid grid-cols-12 min-h-[100px] text-[10.5px]">
                 <div className="col-span-2 border-r border-black p-1 text-center font-bold">
                   {elr.articles?.map((a, i) => <div key={i}>{a.noOfArticles}</div>)}
                 </div>
@@ -280,11 +278,11 @@ export default function ElrFormat({ elr, company, id = "printable-elr-document" 
 
               {/* Value / Inv No Footer Rows */}
               <div className="border-t border-black text-[10.5px]">
-                <div className="grid grid-cols-12 border-b border-black p-0.5 px-1">
+                <div className="grid grid-cols-12 border-b border-black py-0.5 px-1">
                   <span className="col-span-3 font-bold">Value</span>
                   <span className="col-span-9 font-medium">{elr.value || ''}</span>
                 </div>
-                <div className="grid grid-cols-12 p-0.5 px-1">
+                <div className="grid grid-cols-12 py-0.5 px-1">
                   <div className="col-span-6 flex items-center">
                     <span className="font-bold mr-1">Inv. No.:</span>
                     <span className="font-bold">{elr.invNo || ''}</span>
@@ -365,30 +363,30 @@ export default function ElrFormat({ elr, company, id = "printable-elr-document" 
         </div>
 
         {/* Bottom Legal & Signatory Footer */}
-        <div className="pt-1">
+        <div className="pt-1.5">
           {/* GST Payable Checkboxes */}
-          <div className="flex items-center space-x-4 text-[11.5px]">
+          <div className="flex items-center space-x-4 text-[11px]">
             <span className="font-bold uppercase">GST PAYABLE BY CONSIGNOR</span>
-            <span className="inline-block w-4 h-4 border border-black text-center text-xs leading-3">
+            <span className="inline-block w-3.5 h-3.5 border border-black text-center text-xs leading-3">
               {elr.gstPayableBy === 'CONSIGNOR' ? '' : ''}
             </span>
 
             <span className="font-bold uppercase ml-4">CONSIGNEE</span>
-            <span className="inline-block w-4 h-4 border border-black text-center text-xs leading-3">
+            <span className="inline-block w-3.5 h-3.5 border border-black text-center text-xs leading-3">
               {elr.gstPayableBy === 'CONSIGNEE' ? '' : ''}
             </span>
           </div>
 
           {/* Legal Notice Bottom */}
           <div className="flex items-end justify-between mt-2">
-            <div className="font-bold text-[11px] uppercase tracking-wide">
+            <div className="font-bold text-[10.5px] uppercase tracking-wide">
               {elr.termsNotice || 'NOT RESPONSIBLE FOR LEAKAGE & BREAKAGES IN TRANSIT'}
             </div>
 
             {/* Signature Area Right */}
             <div className="text-right">
               <div 
-                className="font-bold text-red-600 text-[12px] tracking-wide mb-6"
+                className="font-bold text-red-600 text-[12px] tracking-wide mb-5"
                 style={{ fontFamily: '"Times New Roman", Times, serif' }}
               >
                 {company.name || 'Shree Sadguru Krupa Transport'}
